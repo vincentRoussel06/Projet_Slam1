@@ -1,0 +1,136 @@
+/********************************************************* GENERAL *********************************************************************/
+
+/* Mise en forme de l'image du header*/
+#header{
+	padding: 0;
+	margin:0;
+	margin-bottom:-5px;				/* Colle le menu à l'image sinon espace de 4px */
+	width: 100%;
+	height: 500px;
+}
+
+/* Enlève les marges de toute la page */
+html, body {
+	margin: 0;
+	padding: 0;
+	background-color: #E6D4CF;	/* COULEUR PRINCIPALE DES PAGES */
+}
+
+/* Mise en forme du pied de page */
+footer{
+	background-color:#333 ;
+	text-align: center;
+	color: white;
+}
+
+/* Param de la div global à toute les pages */
+#Main {
+	width: 100%;			/* Ajuste la div à la largeur de l'ecran */
+	margin: auto;			/* Centre la div */
+	display: inline-block;	/* Ajuste le conteneur au contenu */
+}
+
+/********************************************************* FIN GENERAL ****************************************************************/
+
+/********************************************************* DEBUT MENU  ****************************************************************/
+
+/* Mise en forme général , et celle des sous menus */
+#menu, #menu ul{
+	/* Mise en forme de l'arrière plan dont le background color noir */
+	list-style-type: none;
+	margin: 0;
+	margin-bottom: 1%;				/* Permet un saut ligne après le menu */
+	padding: 0;
+	background-color: #333;
+
+	width: 100%;					/* Extend la barre sur toute la largeur */
+	text-align: center;				/* Aligne les boutons au centre */
+}
+
+/* Mise en forme général des li du menu */
+#menu li{
+	display:inline-block;			/* Alligne les li les uns après les autres */
+	position:relative;
+	border-radius:8px 8px 8px 8px;		/* Arrondie les angles */
+}
+
+/* background des liens menus au survol */
+#menu li:hover{
+	background: #444;
+}
+
+/* les a href */
+#menu a{
+	text-decoration:none;
+	display:block;
+	padding:15px 32px;
+	color:#fff;
+	font-family:arial;
+}
+
+/* Ajuste les sous liens */
+#menu ul a{
+	padding:8px 0;
+}
+
+/* Evenement lorsqu'on passe sur un a du menu et d'un sous menu */
+#menu li:hover a{
+	color:#7C5178;
+}
+
+/* Met en surbrillance la page dans laquel se situe l'utilisateur */
+#menu .active {
+	background-color: #7C5178;
+	border-radius:8px 8px 0 0;		/* Arrondie les angles */
+}
+#menu .active:hover {					
+	background-color: #444;			/* Enlève le background par default lors du survol de la classe active */		
+}
+/********************************************************* FIN MENU  ****************************************************************/
+
+/********************************************************* ACCUEIL  *****************************************************************/
+
+#titreImage {
+	position: relative;
+	top: -5em; left: center;
+	text-align: center;
+	font-family: Helvetica, Arial, sans-serif;
+	color: white;
+}
+
+#titrePage {
+	text-align: center;
+}
+
+/* Pour les deux textes à gauche */
+#Main .Text {
+	margin: 30px;
+	padding: 10px;
+	background-color: #FFF;
+	border-radius: 8px 8px 8px 8px;
+	width: 43%;
+}
+
+table {
+ border-width:1px; 
+ border-style:solid; 
+ border-color:black;
+ width:50%;
+ /* empeche le text de deborder */
+ table-layout: fixed;
+ overflow-wrap: break-word;
+ }
+/********************************************************* FIN ACCUEIL  ****************************************************************/
+a {
+	text-decoration: none; /* enlève le soulignement */
+	color:black;
+}
+button{
+	display: block; margin: auto; padding: 1%;
+}
+td {
+	text-align: center;
+}
+.Text button{
+ 	display: inline-block
+}

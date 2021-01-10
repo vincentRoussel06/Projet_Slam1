@@ -1,0 +1,62 @@
+<!-- MENU -->
+<ul id="menu">
+	<li><a href="index.php?Accueil" class="active">Jouer</a></li>
+	<li><a href="index.php?#">Meilleur score</a></li>
+	<li><a href="index.php?#">Mon score</a></li>	
+</ul>
+<!-- MENU -->
+
+
+<h1 id="titreImage">WARC</h1>
+<h1 id="titrePage">Résumer de votre tour</h1>
+<br>
+<div id="Main">
+
+<table class="Text" style="float: left;">
+	<tr>
+		<td style="text-align: center;" colspan=2>Votre ville</td>
+	</tr>
+	<tr>
+		<td>Nourriture : <?= $_SESSION["Nourriture"]; ?></td>
+	</tr>
+	<tr>
+		<td>Chasseur</td>
+		<td> <?= $_SESSION["Chasseur"]; ?> </td>
+	</tr>
+	<tr>
+		<td>Constructeur</td>
+		<td> <?= $_SESSION["Constructeur"]; ?> </td>
+	</tr>
+	<tr>
+		<td>Assassin</td>
+		<td> <?= $_SESSION["Assassin"]; ?> </td>
+	</tr>
+</table>
+
+<table class="Text" style="float: right;">
+	<tr>
+		<td style="text-align: center;" colspan=2>Ville adversse</td>
+	</tr>
+	<tr>
+		<td>Nourriture : <?= $_SESSION["Ordi_Nourriture"]; ?></td>
+	</tr>
+	<tr>
+		<td>Chasseur</td>
+		<td> <?= $_SESSION["Ordi_Chasseur"]; ?> </td>
+	</tr>
+	<tr>
+		<td>Constructeur</td>
+		<td> <?= $_SESSION["Ordi_Constructeur"]; ?> </td>
+	</tr>
+	<tr>
+		<td>Assassin</td>
+		<td> <?= $_SESSION["Ordi_Assassin"]; ?> </td>
+	</tr>
+</table>
+<br>
+</div>
+
+<br><br>
+<button style="display: block; margin: auto; padding: 1%;"><a href="index.php?Jouer">Tour suivant</a></button>
+<br><br>
+

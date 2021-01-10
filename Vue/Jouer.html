@@ -1,0 +1,44 @@
+<!-- MENU -->
+<ul id="menu">
+	<li><a href="index.php?Accueil" class="active">Jouer</a></li>
+	<li><a href="index.php?#">Meilleur score</a></li>
+	<li><a href="index.php?#">Mon score</a></li>	
+</ul>
+<!-- MENU -->
+
+
+<h1 id="titreImage">WARC</h1>
+<h1 id="titrePage">Vous avez <?= 5  ?> nouveau(x) citoyen(s)</h1>
+<br>
+<div id="Main">
+
+<table class="Text" style="margin: auto;">
+	<tr>
+		<td style="text-align: center;"colspan=3>Votre ville</td>
+	</tr>
+	<tr>
+		<td>Nourriture :</td>
+	</tr>
+	<tr>
+		<td>Chasseur</td>
+		<td> <?= $_SESSION["Chasseur"]; ?> </td>
+		<td><button><a href="#">+</a></button> <button><a href="#">-</a></button></td>
+	</tr>
+	<tr>
+		<td>Constructeur</td>
+		<td> <?= $_SESSION["Constructeur"]; ?> </td>
+		<td><button><a href="#">+</a></button> <button><a href="#">-</a></button></td>
+	</tr>
+	<tr>
+		<td>Assassin</td>
+		<td> <?= $_SESSION["Assassin"]; ?> </td>
+		<td><button><a href="#">+</a></button> <button><a href="#">-</a></button></td>
+	</tr>
+</table>
+<br>
+</div>
+
+<br><br>
+<button style="display: block; margin: auto; padding: 1%;"><a href="index.php?Chasseur">Suivant</a></button>
+<br><br>
+
