@@ -41,4 +41,5 @@
 	include("C:\wamp64\www\moi\Vue\Commun\Bottom-page.html");
 	
 	/* Ceci est un test pour github hehe*/
+	/* oh peut etre que ça marche ? */
  ?>
