@@ -34,11 +34,11 @@
 		$AFFICHAGE="\Accueil.html";
 	}
 	/******************************************************** AFFICHAGE ************************************************************/
-	include("C:\wamp64\www\moi\Vue\Commun\Top-page.html");
-	include("C:\wamp64\www\moi\Vue\Commun\Header.html");
-	include("C:\wamp64\www\moi\Vue".$AFFICHAGE);
-	include("C:\wamp64\www\moi\Vue\Commun\Footer.html");
-	include("C:\wamp64\www\moi\Vue\Commun\Bottom-page.html");
+	include("..\Projet_Slam1\Vue\Commun\Top-page.html");
+	include("..\Projet_Slam1\Vue\Commun\Header.html");
+	include("..\Projet_Slam1\Vue".$AFFICHAGE);
+	include("..\Projet_Slam1\Vue\Commun\Footer.html");
+	include("..\Projet_Slam1\Vue\Commun\Bottom-page.html");
 	
 	/* Ceci est un test pour github hehe*/
 	/* oh peut etre que ça marche ? */
