@@ -5,8 +5,26 @@
 
 	/******************************************************** TRAITEMENT ************************************************************/
 
-
+	// determine la page à afficher en fonction du param GET envoyer
 	if(isset($_GET['Jouer'])){
+
+		/* INIT A CHAQUE DEBUT DE PARTIE*/
+		$_SESSION["Tour"] = 0;
+		$_SESSION["Maison"] = 1;
+		$_SESSION["Chasseur"] = 1;
+		$_SESSION["Constructeur"] = 1;
+		$_SESSION["Assassin"] = 1;
+		$_SESSION["Nourriture"] = 100;
+
+		$_SESSION["Ordi_Tour"] = 0;
+		$_SESSION["Ordi_Maison"] = 1;
+		$_SESSION["Ordi_Chasseur"] = 2;
+		$_SESSION["Ordi_Constructeur"] = 2;
+		$_SESSION["Ordi_Assassin"] = 2;
+		$_SESSION["Ordi_Nourriture"] = 100;
+		$AFFICHAGE="\Jouer.html";
+	}
+	else if(isset($_GET['Citoyen'])){
 		$AFFICHAGE="\Nvo_citoyen.html";
 	}
 	else if(isset($_GET['Chasseur'])){
@@ -34,9 +52,7 @@
 	}
 	else if(isset($_GET['Resume'])){
 		/* Permet d'eviter la réinitialisations des variables */
-		$AFFICHAGE="\Accueil.html";
-
-		// TODO TOUR DE L'ORDI ICI
+		$AFFICHAGE="\Jouer.html";
 
 		/* En fonction de l'action des assassins */
 		if ($_GET['Resume']=="citoyen") {
@@ -44,24 +60,11 @@
 		}else if($_GET['Resume']=="maison"){
 			$_SESSION["Ordi_Maison"]-=1;
 		}
+
+		// TODO TOUR DE L'ORDI ICI
 	}
 	else{
 		$AFFICHAGE="\Accueil.html";
-
-		/* INIT QUE SUR LA PAGE D'ACCUEIL*/
-		$_SESSION["Tour"] = 0;
-		$_SESSION["Maison"] = 1;
-		$_SESSION["Chasseur"] = 1;
-		$_SESSION["Constructeur"] = 1;
-		$_SESSION["Assassin"] = 1;
-		$_SESSION["Nourriture"] = 100;
-
-		$_SESSION["Ordi_Tour"] = 0;
-		$_SESSION["Ordi_Maison"] = 1;
-		$_SESSION["Ordi_Chasseur"] = 2;
-		$_SESSION["Ordi_Constructeur"] = 2;
-		$_SESSION["Ordi_Assassin"] = 2;
-		$_SESSION["Ordi_Nourriture"] = 100;
 	}
 	/******************************************************** AFFICHAGE ************************************************************/
 	include("..\Projet_Slam1\Vue\Commun\Top-page.html");

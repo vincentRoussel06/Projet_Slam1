@@ -11,34 +11,41 @@
 <h1 id="titrePage">Vous avez <?= 5  ?> nouveau(x) citoyen(s)</h1>
 <br>
 <div id="Main">
-
-<table class="Text" style="margin: auto;">
-	<tr>
-		<td style="text-align: center;"colspan=3>Votre ville</td>
-	</tr>
-	<tr>
-		<td>Nourriture :</td>
-	</tr>
-	<tr>
-		<td>Chasseur</td>
-		<td> <?= $_SESSION["Chasseur"]; ?> </td>
-		<td><button><a href="#">+</a></button> <button><a href="#">-</a></button></td>
-	</tr>
-	<tr>
-		<td>Constructeur</td>
-		<td> <?= $_SESSION["Constructeur"]; ?> </td>
-		<td><button><a href="#">+</a></button> <button><a href="#">-</a></button></td>
-	</tr>
-	<tr>
-		<td>Assassin</td>
-		<td> <?= $_SESSION["Assassin"]; ?> </td>
-		<td><button><a href="#">+</a></button> <button><a href="#">-</a></button></td>
-	</tr>
-</table>
+<form action="index.php?Chasseur" method="POST">
+	<table class="Text" style="margin: auto;">
+		<tr>
+			<td style="text-align: center;"colspan=3>Votre ville</td>
+		</tr>
+		<tr>
+			<td>Nourriture :</td>
+		</tr>
+		<tr>
+			<td>Chasseur</td>
+			<td> <output id="NewChasseur"><?= $_SESSION["Chasseur"];?></output> </td>
+			<td>
+				<!-- Le output n'est pas envoyer -->
+		      	<input type="button" value="+" onclick="NewChasseur.value = parseInt(NewChasseur.value)+1;">
+		      	<input type="button" value="-" onclick="NewChasseur.value = parseInt(NewChasseur.value)-1;">
+  			</td>
+		</tr>
+		<tr>
+			<td>Constructeur</td>
+			<td> <output id="NewConstructeur"><?= $_SESSION["Constructeur"];?></output> </td>
+			<td>
+				<!-- Le output n'est pas envoyer -->
+		      	<input type="button" value="+" onclick="NewConstructeur.value = parseInt(NewConstructeur.value)+1;">
+		      	<input type="button" value="-" onclick="NewConstructeur.value = parseInt(NewConstructeur.value)-1;">
+  			</td>
+		</tr>
+		<tr>
+			<td>Assassin</td>
+			<td> <?= $_SESSION["Assassin"]; ?> </td>
+			<td><button><a href="#">+</a></button> <button><a href="#">-</a></button></td>
+		</tr>
+	</table>
+	<br>
+	<input type="submit" name="submitCitoyen" value="Suivant">
+</form>
 <br>
 </div>
-
-<br><br>
-<button style="display: block; margin: auto; padding: 1%;"><a href="index.php?Chasseur">Suivant</a></button>
-<br><br>
 

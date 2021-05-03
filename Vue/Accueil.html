@@ -8,57 +8,25 @@
 
 
 <h1 id="titreImage">WARC</h1>
-<h1 id="titrePage">Village</h1>
+<h1 id="titrePage">Bienvenue dans WARC (War Against Random City)</h1>
 <br>
 <div id="Main">
-<table class="Text" style="float: left;">
-	<tr>
-		<td style="text-align: center;" colspan=2>Votre ville</td>
-	</tr>
-	<tr>
-		<td>Nourriture : <?= $_SESSION["Nourriture"]; ?></td>
-		<td>Maison : <?= $_SESSION["Maison"]; ?></td>
-	</tr>
-	<tr>
-		<td>Chasseur</td>
-		<td> <?= $_SESSION["Chasseur"]; ?> </td>
-	</tr>
-	<tr>
-		<td>Constructeur</td>
-		<td> <?= $_SESSION["Constructeur"]; ?> </td>
-	</tr>
-	<tr>
-		<td>Assassin</td>
-		<td> <?= $_SESSION["Assassin"]; ?> </td>
-	</tr>
-</table>
+	<table class="Text" style="margin: auto; margin-bottom: 5%; ">
+		<tr><td>
+	<p> Voici comment jouer : <br>
+		Le but est de detruire la ville adverse et ses habitants. <br>
+		Pour cela vous aurez 3 types de personnages :
+		<ul style="list-style: none;">
+			<li>Les fermiers</li>
+			<li>Les constructeurs</li>
+			<li>Les assasins</li>
+		</ul><br>
+		Chaques personnages ont des actions spécifiques qui vous permettrons de remporter la victoire.
+	</p>
 
-<table class="Text" style="float: right;">
-	<tr>
-		<td style="text-align: center;" colspan=2>Ville adversse</td>
-	</tr>
-	<tr>
-		<td>Nourriture : <?= $_SESSION["Ordi_Nourriture"]; ?></td>
-		<td>Maison : <?= $_SESSION["Ordi_Maison"]; ?></td>
-	</tr>
-	<tr>
-		<td>Chasseur</td>
-		<td> <?= $_SESSION["Ordi_Chasseur"]; ?> </td>
-	</tr>
-	<tr>
-		<td>Constructeur</td>
-		<td> <?= $_SESSION["Ordi_Constructeur"]; ?> </td>
-	</tr>
-	<tr>
-		<td>Assassin</td>
-		<td> <?= $_SESSION["Ordi_Assassin"]; ?> </td>
-	</tr>
-</table>
+	<button><a href="index.php?Jouer">Lancer une partie</a></button>
+	</td></tr></table>
 </div>
 
-<br><br>
-<button style="display: block; margin: auto; padding: 1%;"><a href="index.php?Jouer"> Suivant</a></button>
-<br><br><br><br><br><br>
-<button style="display: block; margin: auto; padding: 1%;"><a href="/Vue/test.html">test</a></button>
-<br><br>
+
 

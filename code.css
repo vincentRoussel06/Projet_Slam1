@@ -126,7 +126,7 @@ a {
 	text-decoration: none; /* enlève le soulignement */
 	color:black;
 }
-button{
+button, input[type=submit]{
 	display: block; margin: auto; padding: 1%;
 }
 td {
