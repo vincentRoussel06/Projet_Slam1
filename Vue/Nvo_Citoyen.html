@@ -6,9 +6,17 @@
 </ul>
 <!-- MENU -->
 
+<script type="text/javascript">
+	function onSubmit(){
+		resChasseurId.value = NewChasseur.value;
+		resConstructeurId.value = NewConstructeur.value
+		resAssassinId.value = NewAssassin.value
+	}
+</script>
+
 
 <h1 id="titreImage">WARC</h1>
-<h1 id="titrePage">Vous avez <?= 5  ?> nouveau(x) citoyen(s)</h1>
+<h1 id="titrePage">Vous avez <?= $_SESSION["Maison"];?> nouveau(x) citoyen(s)</h1>
 <br>
 <div id="Main">
 <form action="index.php?Chasseur" method="POST">
@@ -26,6 +34,7 @@
 				<!-- Le output n'est pas envoyer -->
 		      	<input type="button" value="+" onclick="NewChasseur.value = parseInt(NewChasseur.value)+1;">
 		      	<input type="button" value="-" onclick="NewChasseur.value = parseInt(NewChasseur.value)-1;">
+		      	<input type="hidden" id="resChasseurId" name="resChasseur">
   			</td>
 		</tr>
 		<tr>
@@ -35,16 +44,23 @@
 				<!-- Le output n'est pas envoyer -->
 		      	<input type="button" value="+" onclick="NewConstructeur.value = parseInt(NewConstructeur.value)+1;">
 		      	<input type="button" value="-" onclick="NewConstructeur.value = parseInt(NewConstructeur.value)-1;">
+		      	<input type="hidden" id="resConstructeurId" name="resConstructeur">
   			</td>
 		</tr>
 		<tr>
 			<td>Assassin</td>
-			<td> <?= $_SESSION["Assassin"]; ?> </td>
-			<td><button><a href="#">+</a></button> <button><a href="#">-</a></button></td>
+			<td> <output id="NewAssassin"><?= $_SESSION["Assassin"];?></output> </td>
+			<td>
+				<!-- Le output n'est pas envoyer -->
+		      	<input type="button" value="+" onclick="NewAssassin.value = parseInt(NewAssassin.value)+1;">
+		      	<input type="button" value="-" onclick="NewAssassin.value = parseInt(NewAssassin.value)-1;">
+		      	<input type="hidden" id="resAssassinId" name="resAssassin">
+  			</td>
 		</tr>
 	</table>
 	<br>
-	<input type="submit" name="submitCitoyen" value="Suivant">
+	<!-- Donc créer un input cacher qui renvoie la valeur de l'ouput lors de la validation  -->
+    <input type="submit" name="submitCitoyen" onclick="onSubmit()"> <!-- onsubmit don't work  -->
 </form>
 <br>
 </div>
