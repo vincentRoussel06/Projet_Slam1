@@ -28,7 +28,7 @@
   </head>
   <body onload="initElement();">
 
-  	<p id="chass"> Nombre de Chasseur : <?= $_SESSION["Chasseur"]; ?> </p>
+  	<p id="chass"> Nombre de Chasseur : 0; ?> </p>
 
     <button type="button" id="btn+">+</button>
 	  <button type="button" id="btn-">-</button>

@@ -47,6 +47,7 @@
 	}
 	else{
 		$AFFICHAGE="\Accueil.html";
+		$_SESSION["chass"]=0;
 
 		/* INIT QUE SUR LA PAGE D'ACCUEIL*/
 		$_SESSION["Tour"] = 0;
