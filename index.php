@@ -7,7 +7,7 @@
 
 	// determine la page à afficher en fonction du param GET envoyer
 	if(isset($_GET['Jouer'])){
-		initPartie();
+		$AFFICHAGE=initPartie();
 	}
 	else if(isset($_GET['Citoyen'])){
 		$AFFICHAGE="\Nvo_citoyen.html";
@@ -44,7 +44,7 @@
 
 		/* En fonction de l'action des assassins */
 		if ($_GET['Resume']=="citoyen") {
-			assassinTueCitoyens()
+			assassinTueCitoyens();
 		}else if($_GET['Resume']=="maison"){
 			assassinDetruitMaison();
 		}
@@ -114,5 +114,7 @@
 		$_SESSION["Ordi_Assassin"] = 2;
 		$_SESSION["Ordi_Nourriture"] = 100;
 		$AFFICHAGE="\Jouer.html";	
+
+		return "/Jouer.html";
 	}
  ?>

@@ -6,34 +6,24 @@
 </ul>
 <!-- MENU -->
 
-<script type="text/javascript">
-	function onSubmit(){
-		resChasseurId.value = NewChasseur.value;
-		resConstructeurId.value = NewConstructeur.value
-		resAssassinId.value = NewAssassin.value
-	}
-</script>
-
-
 <h1 id="titreImage">WARC</h1>
 <h1 id="titrePage">Vous avez <?= $_SESSION["Maison"];?> nouveau(x) citoyen(s)</h1>
 <br>
 <div id="Main">
-<form action="index.php?Chasseur" method="POST">
+<form action="index.php?Chasseur" method="POST" id="myform"> <!-- id pour submit avec javascript -->
+
 	<table class="Text" style="margin: auto;">
 		<tr>
 			<td style="text-align: center;"colspan=3>Votre ville</td>
 		</tr>
-		<tr>
-			<td>Nourriture :</td>
-		</tr>
+		<tr><td><br></td></tr> <!-- saut de ligne estétique -->
 		<tr>
 			<td>Chasseur</td>
 			<td> <output id="NewChasseur"><?= $_SESSION["Chasseur"];?></output> </td>
 			<td>
 				<!-- Le output n'est pas envoyer -->
-		      	<input type="button" value="+" onclick="NewChasseur.value = parseInt(NewChasseur.value)+1;">
-		      	<input type="button" value="-" onclick="NewChasseur.value = parseInt(NewChasseur.value)-1;">
+		      	<div id="add1"></div>
+		      	<div id="less1"></div>
 		      	<input type="hidden" id="resChasseurId" name="resChasseur">
   			</td>
 		</tr>
@@ -42,8 +32,8 @@
 			<td> <output id="NewConstructeur"><?= $_SESSION["Constructeur"];?></output> </td>
 			<td>
 				<!-- Le output n'est pas envoyer -->
-		      	<input type="button" value="+" onclick="NewConstructeur.value = parseInt(NewConstructeur.value)+1;">
-		      	<input type="button" value="-" onclick="NewConstructeur.value = parseInt(NewConstructeur.value)-1;">
+		      	<div id="add2"></div>
+		      	<div id="less2"></div>
 		      	<input type="hidden" id="resConstructeurId" name="resConstructeur">
   			</td>
 		</tr>
@@ -52,16 +42,123 @@
 			<td> <output id="NewAssassin"><?= $_SESSION["Assassin"];?></output> </td>
 			<td>
 				<!-- Le output n'est pas envoyer -->
-		      	<input type="button" value="+" onclick="NewAssassin.value = parseInt(NewAssassin.value)+1;">
-		      	<input type="button" value="-" onclick="NewAssassin.value = parseInt(NewAssassin.value)-1;">
+		      	<div id="add3"></div>
+		      	<div id="less3"></div>
 		      	<input type="hidden" id="resAssassinId" name="resAssassin">
   			</td>
 		</tr>
 	</table>
 	<br>
 	<!-- Donc créer un input cacher qui renvoie la valeur de l'ouput lors de la validation  -->
-    <input type="submit" name="submitCitoyen" onclick="onSubmit()"> <!-- onsubmit don't work  -->
+    <input type="button" name="submitCitoyen" onclick="onSubmit()" value="Envoyer"> <!-- onsubmit don't work  -->
+
 </form>
+
 <br>
 </div>
+
+<script type="text/javascript">
+	showAdd();	// Montre les boutons pour augmenter de base
+
+	var nbNvoCitoyen = <?= $_SESSION["Maison"];?>; 			/* Va servir pour les conditions plus tard */
+	var Chasseur = <?= $_SESSION["Chasseur"];?>;			/* Recup le nb de chasseur */
+	var Constructeur = <?= $_SESSION["Constructeur"];?>;	/* Recup le nb de constructeur */
+	var Assassin = <?= $_SESSION["Assassin"];?>;			/* Recup le nb de assassin */
+	var nbTotCitoyen = <?= $_SESSION["Chasseur"]+$_SESSION["Constructeur"]+$_SESSION["Assassin"];?>;
+	
+	function onSubmit(){
+		// recup la somme de toutes les nouvelles valeur
+		var nvoTotCitoyen = parseInt(NewChasseur.value) + parseInt(NewConstructeur.value) + parseInt(NewAssassin.value); 
+
+		// verif si on peut augmenter
+		if ( (nvoTotCitoyen-nbTotCitoyen ) < nbNvoCitoyen) { 
+			alert("Erreur veuillez affecter tous vos citoyens");
+		}else {
+			resChasseurId.value = NewChasseur.value;
+			resConstructeurId.value = NewConstructeur.value;
+			resAssassinId.value = NewAssassin.value;
+			document.forms["myform"].submit();
+		}
+	}
+
+	function  add(variable){
+		// recup la somme de toutes les nouvelles valeur
+		var nvoTotCitoyen = parseInt(NewChasseur.value) + parseInt(NewConstructeur.value) + parseInt(NewAssassin.value); 
+		// verif si on peut augmenter
+		if ( (nvoTotCitoyen-nbTotCitoyen ) < nbNvoCitoyen-1) { // -1 car l'affectation se fait après le submit
+			showAdd();	// AFFICHER 
+		}else {
+			hideAdd();
+		}
+
+		// MAJ des boutons		
+		switch(variable){	// Affiche le bouton '-' en fonction du choix fait par l'util
+			case NewChasseur :
+				document.getElementById('less1').innerHTML = '<input type="button" value="-" onclick="NewChasseur.value=less(NewChasseur)">';
+			break;
+			case NewConstructeur :
+				document.getElementById('less2').innerHTML = '<input type="button" value="-" onclick="NewConstructeur.value=less(NewConstructeur)">';
+			break;
+			case NewAssassin :
+				document.getElementById('less3').innerHTML = '<input type="button" value="-" onclick="NewAssassin.value=less(NewAssassin)">';
+			break;
+			default:
+				alert("Erreur");
+			break;
+		}
+
+		return parseInt(variable.value)+1;	// AUGMENTER
+	}
+
+	function  less(variable){
+		// recup la somme de toutes les nouvelles valeur
+		var nvoTotCitoyen = parseInt(NewChasseur.value) + parseInt(NewConstructeur.value) + parseInt(NewAssassin.value); 
+
+		// verif si on peut baisser
+		switch(variable){	// Affiche le bouton '+' en fonction du choix fait par l'util
+			case NewChasseur :
+				if(variable.value>Chasseur+1){ // +1 car l'affectation se fait après le submit
+					document.getElementById('less1').innerHTML = '<input type="button" value="-" onclick="NewChasseur.value=less(NewChasseur)">';
+				}else{
+					document.getElementById('less1').innerHTML = '';
+				}
+				showAdd();	// AFFICHER 				
+			break;
+			case NewConstructeur :
+				if(variable.value>Constructeur+1){	// +1 car l'affectation se fait après le submit
+					document.getElementById('less2').innerHTML = '<input type="button" value="-" onclick="NewConstructeur.value=less(NewConstructeur)">';
+				}else{
+					document.getElementById('less2').innerHTML = '';
+				}
+				showAdd();	// AFFICHER 
+			break;
+			case NewAssassin :
+				if(variable.value>Assassin+1){	// +1 car l'affectation se fait après le submit
+					document.getElementById('less3').innerHTML = '<input type="button" value="-" onclick="NewAssassin.value=less(NewAssassin)">';
+				}else{
+					document.getElementById('less3').innerHTML = '';
+				}
+				showAdd();	// AFFICHER 
+			break;
+			default:
+				alert("Erreur");
+			break;
+		}
+
+		return parseInt(variable.value)-1;	// BAISSER
+	}
+
+	function showAdd(){
+		document.getElementById('add1').innerHTML = '<input type="button" value="+" onclick="NewChasseur.value =add(NewChasseur)" required>';
+		document.getElementById('add2').innerHTML = '<input type="button" value="+" onclick="NewConstructeur.value=add(NewConstructeur)" required>';
+		document.getElementById('add3').innerHTML = '<input type="button" value="+" onclick="NewAssassin.value=add(NewAssassin)" required>';
+	}
+
+	function hideAdd(){
+		document.getElementById('add1').innerHTML = '';
+		document.getElementById('add2').innerHTML = '';
+		document.getElementById('add3').innerHTML = '';
+	}
+
+</script>
 
