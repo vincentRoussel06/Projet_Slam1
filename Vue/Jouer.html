@@ -8,50 +8,54 @@
 
 
 <h1 id="titreImage">WARC</h1>
-<h1 id="titrePage">Village</h1>
+<h1 id="titrePage">Etat des villages</h1>
 <br>
 <div id="Main">
 <table class="Text" style="float: left;">
 	<tr>
-		<td style="text-align: center;" colspan=2>Votre ville</td>
+		<td style="text-align: center;" colspan=4>Votre ville</td>
 	</tr>
 	<tr>
-		<td>Nourriture : <?= $_SESSION["Nourriture"]; ?></td>
-		<td>Maison : <?= $_SESSION["Maison"]; ?></td>
-	</tr>
-	<tr>
-		<td>Chasseur</td>
+		<td>Chasseur :</td>
 		<td> <?= $_SESSION["Chasseur"]; ?> </td>
+		<td>Nourriture :</td>
+		<td><?= $_SESSION["Nourriture"]; ?></td>
 	</tr>
 	<tr>
-		<td>Constructeur</td>
+		<td>Constructeur :</td>
 		<td> <?= $_SESSION["Constructeur"]; ?> </td>
+		<td>Maison :</td>
+		<td><?= $_SESSION["Maison"]; ?></td>
 	</tr>
 	<tr>
-		<td>Assassin</td>
+		<td>Assassin :</td>
 		<td> <?= $_SESSION["Assassin"]; ?> </td>
+		<td>Piège :</td>
+		<td><?= $_SESSION["Piege"]; ?></td>
 	</tr>
 </table>
 
 <table class="Text" style="float: right;">
 	<tr>
-		<td style="text-align: center;" colspan=2>Ville adversse</td>
+		<td style="text-align: center;" colspan=4>Ville adversse</td>
 	</tr>
 	<tr>
-		<td>Nourriture : <?= $_SESSION["Ordi_Nourriture"]; ?></td>
-		<td>Maison : <?= $_SESSION["Ordi_Maison"]; ?></td>
-	</tr>
-	<tr>
-		<td>Chasseur</td>
+		<td>Chasseur :</td>
 		<td> <?= $_SESSION["Ordi_Chasseur"]; ?> </td>
+		<td>Nourriture :</td>
+		<td><?= $_SESSION["Ordi_Nourriture"]; ?></td>
 	</tr>
 	<tr>
-		<td>Constructeur</td>
+		<td>Constructeur :</td>
 		<td> <?= $_SESSION["Ordi_Constructeur"]; ?> </td>
+		<td>Maison :</td>
+		<td><?= $_SESSION["Ordi_Maison"]; ?></td>
 	</tr>
 	<tr>
-		<td>Assassin</td>
+		<td>Assassin :</td>
 		<td> <?= $_SESSION["Ordi_Assassin"]; ?> </td>
+		<td>Piège :</td>
+		<td><?= $_SESSION["Ordi_Piege"]; ?></td>
 	</tr>
 </table>
 </div>

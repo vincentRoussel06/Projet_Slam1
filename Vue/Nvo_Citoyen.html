@@ -18,7 +18,7 @@
 		</tr>
 		<tr><td><br></td></tr> <!-- saut de ligne estétique -->
 		<tr>
-			<td>Chasseur</td>
+			<td>Chasseur :</td>
 			<td> <output id="NewChasseur"><?= $_SESSION["Chasseur"];?></output> </td>
 			<td>
 				<!-- Le output n'est pas envoyer -->
@@ -28,7 +28,7 @@
   			</td>
 		</tr>
 		<tr>
-			<td>Constructeur</td>
+			<td>Constructeur :</td>
 			<td> <output id="NewConstructeur"><?= $_SESSION["Constructeur"];?></output> </td>
 			<td>
 				<!-- Le output n'est pas envoyer -->
@@ -38,7 +38,7 @@
   			</td>
 		</tr>
 		<tr>
-			<td>Assassin</td>
+			<td>Assassin :</td>
 			<td> <output id="NewAssassin"><?= $_SESSION["Assassin"];?></output> </td>
 			<td>
 				<!-- Le output n'est pas envoyer -->
@@ -121,8 +121,7 @@
 					document.getElementById('less1').innerHTML = '<input type="button" value="-" onclick="NewChasseur.value=less(NewChasseur)">';
 				}else{
 					document.getElementById('less1').innerHTML = '';
-				}
-				showAdd();	// AFFICHER 				
+				}				
 			break;
 			case NewConstructeur :
 				if(variable.value>Constructeur+1){	// +1 car l'affectation se fait après le submit
@@ -130,7 +129,6 @@
 				}else{
 					document.getElementById('less2').innerHTML = '';
 				}
-				showAdd();	// AFFICHER 
 			break;
 			case NewAssassin :
 				if(variable.value>Assassin+1){	// +1 car l'affectation se fait après le submit
@@ -138,13 +136,13 @@
 				}else{
 					document.getElementById('less3').innerHTML = '';
 				}
-				showAdd();	// AFFICHER 
+				
 			break;
 			default:
 				alert("Erreur");
 			break;
 		}
-
+		showAdd();	// AFFICHER 
 		return parseInt(variable.value)-1;	// BAISSER
 	}
 

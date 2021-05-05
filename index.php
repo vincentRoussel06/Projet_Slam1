@@ -21,40 +21,20 @@
 		$AFFICHAGE="\Action-Chasseur.html";
 	}
 	else if(isset($_GET['Constructeur'])){
-		$AFFICHAGE="\Action-Constructeur.html";
-
-		/* En fonction de l'action des chasseurs */
-		if ($_GET['Constructeur']=="chasser") {
-			$_SESSION["Nourriture"] += (10*$_SESSION["Chasseur"]); // ajoute 10 de nourriture par chasseur
-		}else if($_GET['Constructeur']=="bétail"){
-			$_SESSION["Nourriture"] += (5*$_SESSION["Chasseur"]);	// ajoute 5 de nourriture par chasseur
-		}
+		$AFFICHAGE = actionChasseur();
 	}
 	else if(isset($_GET['Assassin'])){
-		$AFFICHAGE="\Action-Assassin.html";
-
-		/* En fonction de l'action des constructeurs */
-		if ($_GET['Assassin']=="maison") {
-			$_SESSION["Maison"] += (1*$_SESSION["Constructeur"]);	// Construit 1 maison par constructeurs
-		}else if($_GET['Assassin']=="tour"){
-			$_SESSION["Tour"] += (1*$_SESSION["Constructeur"]);		// Construit 1 tour par constructeurs
-		}
+		$AFFICHAGE = actionConstructeur();
 	}
 	else if(isset($_GET['Resume'])){
+		$AFFICHAGE = actionAssassin();
 
-		/* En fonction de l'action des assassins */
-		if ($_GET['Resume']=="citoyen") {
-			assassinTueCitoyens();
-		}else if($_GET['Resume']=="maison"){
-			assassinDetruitMaison();
-		}
-
-		$AFFICHAGE=verifFinPartie();
 		// TODO TOUR DE L'ORDI ICI
 	}
 	else{
 		$AFFICHAGE="\Accueil.html";
 	}
+
 	/******************************************************** AFFICHAGE ************************************************************/
 	include("..\Projet_Slam1\Vue\Commun\Top-page.html");
 	include("..\Projet_Slam1\Vue\Commun\Header.html");
@@ -78,7 +58,7 @@
 
 	function assassinTueCitoyens(){
 		// Tue d'abord les Chasseur, puis les constructeurs et enfin les assassins
-		for ($i = 0; $i < $_SESSION["Assassin"]; $i++) {
+		for ($i = 0; $i < $_SESSION["Assassin"]-$_SESSION["Ordi_Piege"]; $i++) {
 			if($_SESSION["Ordi_Chasseur"]>0){
 				$_SESSION["Ordi_Chasseur"] -= 1;		// Tue 1 citoyen par assassin
 			}else if ($_SESSION["Ordi_Constructeur"]>0){
@@ -91,7 +71,7 @@
 
 	function assassinDetruitMaison(){
 		// baisse au max jusqu'à 0 le nb de maison
-		for ($i = 0; $i <= $_SESSION["Chasseur"]; $i++) {
+		for ($i = 0; $i <= $_SESSION["Chasseur"]-$_SESSION["Ordi_Piege"]; $i++) {
 			if($_SESSION["Ordi_Maison"]>0){
 				$_SESSION["Ordi_Maison"] -= 1;	
 			}
@@ -100,21 +80,60 @@
 
 	function initPartie(){
 		/* INIT A CHAQUE DEBUT DE PARTIE*/
-		$_SESSION["Tour"] = 0;
+		$_SESSION["Piege"] = 0;
 		$_SESSION["Maison"] = 1;
 		$_SESSION["Chasseur"] = 1;
 		$_SESSION["Constructeur"] = 1;
 		$_SESSION["Assassin"] = 1;
 		$_SESSION["Nourriture"] = 100;
 
-		$_SESSION["Ordi_Tour"] = 0;
-		$_SESSION["Ordi_Maison"] = 1;
+		$_SESSION["Ordi_Piege"] = 2;
+		$_SESSION["Ordi_Maison"] = 2;
 		$_SESSION["Ordi_Chasseur"] = 2;
 		$_SESSION["Ordi_Constructeur"] = 2;
 		$_SESSION["Ordi_Assassin"] = 2;
-		$_SESSION["Ordi_Nourriture"] = 100;
+		$_SESSION["Ordi_Nourriture"] = 200;
 		$AFFICHAGE="\Jouer.html";	
 
 		return "/Jouer.html";
+	}
+
+	function actionChasseur(){
+		$AFFICHAGE="\Action-Constructeur.html";
+
+		/* En fonction de l'action des chasseurs */
+		if ($_GET['Constructeur']=="chasser") {
+			$_SESSION["Nourriture"] += (10*$_SESSION["Chasseur"]); // ajoute 10 de nourriture par chasseur
+		}else if($_GET['Constructeur']=="vol"){
+			if(rand(0,1)==1){
+				echo "mort!!!!!!!!!!";
+				// TODO faire mourir la moitier des chasseurs
+			}
+			$_SESSION["Nourriture"] += (5*$_SESSION["Chasseur"]);	// ajoute 5 de nourriture par chasseur
+		}
+
+		return "\Action-Constructeur.html";
+	}
+
+	function actionConstructeur(){
+		/* En fonction de l'action des constructeurs */
+		if ($_GET['Assassin']=="maison") {
+			$_SESSION["Maison"] += (1*$_SESSION["Constructeur"]);	// Construit 1 maison par constructeurs
+		}else if($_GET['Assassin']=="tour"){
+			$_SESSION["Piege"] += (1*$_SESSION["Constructeur"]);		// Construit 1 tour par constructeurs
+		}
+
+		return "\Action-Assassin.html";
+	}
+
+	function actionAssassin(){
+		/* En fonction de l'action des assassins */
+		if ($_GET['Resume']=="citoyen") {
+			assassinTueCitoyens();
+		}else if($_GET['Resume']=="maison"){
+			assassinDetruitMaison();
+		}
+
+		return verifFinPartie();
 	}
  ?>
