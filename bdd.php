@@ -29,7 +29,7 @@ class BDD{
 		}
 
 		while ($donnees = $reponse->fetch()) {
-			if ($mdp=$donnees['Mdp'] ) {
+			if (password_verify($motDePasse, $donnees['Mdp'])) {
 				$_SESSION["Name"]=$donnees["Nom"];
 				return true;
 			}
@@ -42,7 +42,7 @@ class BDD{
 		$req="INSERT INTO user (Nom, Mdp, Partie, NbTour) 
 			  VALUES (?, ?, ?, ?)";
 		$reponse= $this->bdd->prepare($req);
-		$mdp =password_hash($passwd, PASSWORD_DEFAULT);
+		$mdp = password_hash($passwd, PASSWORD_DEFAULT);
 		$reponse->execute(array($identifiant,$mdp,0,0));
 		echo '<script type="text/javascript"> alert("Insertion validée");</script>';
 

@@ -9,7 +9,12 @@
 
 	// determine la page à afficher en fonction du param GET envoyer
 	if(isset($_GET['Jouer'])){
-		$AFFICHAGE = initPartie();
+		if(isset($_SESSION["Name"])){
+			$AFFICHAGE = initPartie();
+		}else{
+			echo '<script type="text/javascript"> alert("Vous devez être connecté");</script>';
+			$AFFICHAGE = "\Connexion.html";
+		}	
 	}
 	else if(isset($_GET['Citoyen'])){
 		$AFFICHAGE = "\Nvo_citoyen.html";
@@ -30,7 +35,7 @@
 	}
 	else if (isset($_GET['deco'])) {
         session_destroy();
-        $AFFICHAGE = "\Connexion.html";   
+        header("Location: index.php");   
     }
     else if (isset($_GET['connexion'])) {
         $AFFICHAGE = "\Connexion.html";   
@@ -76,15 +81,19 @@
 	}
 
 	function actionChasseur($Joueur){
+		$Enemi = $Joueur=='a' ? 'b' : 'a'; // Trouve l'Enemi
 		/* En fonction de l'action des chasseurs */
 		if ($_GET['Constructeur']=="chasser") {
 			$_SESSION[$Joueur]["Nourriture"] += (10*$_SESSION[$Joueur]["Chasseur"]); // ajoute 10 de nourriture par chasseur
 		}else if($_GET['Constructeur']=="vol"){
-			if(rand(0,1)==1){
-				echo "mort!!!!!!!!!!";
-				// TODO faire mourir la moitier des chasseurs
+			if(rand(0,1)==1){	// 1 chance sur deux de perdre la moitier des chasseurs
+				$_SESSION[$Joueur]["Chasseur"] = $_SESSION[$Joueur]["Chasseur"]%2;
+			}else{
+				$_SESSION[$Joueur]["Nourriture"] += (10*$_SESSION[$Joueur]["Chasseur"]);
+				$_SESSION[$Enemi]["Nourriture"] -= (10*$_SESSION[$Joueur]["Chasseur"]);
+				$_SESSION[$Enemi]["Nourriture"] = $_SESSION[$Enemi]["Nourriture"]<0 ?0:$_SESSION[$Enemi]["Nourriture"];
 			}
-			$_SESSION[$Joueur]["Nourriture"] += (5*$_SESSION[$Joueur]["Chasseur"]);	// ajoute 5 de nourriture par chasseur
+			
 		}
 
 		return "\Action-Constructeur.html";
@@ -197,7 +206,7 @@
             if (isset($_POST['passwd']) && $_POST['passwd'] != '' ) {
             #Si l'utilisateur à bien saisi son mot de passe
                 if($bdd->logIn($_POST['identifiant'], $_POST['passwd'])){
-                	$return = "/Jouer.html";
+                	$return = "\Accueil.html";
                 }
                 
             }else  $message="ErreurMDP";

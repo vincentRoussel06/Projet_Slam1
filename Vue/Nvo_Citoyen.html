@@ -1,4 +1,3 @@
-<h1 id="titreImage">WARC</h1>
 <h1 id="titrePage">Joueur <?= $_SESSION["joueur"];?></h1>
 <h1 id="titrePage">Vous avez <?= $_SESSION[$_SESSION["joueur"]]["Maison"];?> nouveau(x) citoyen(s)</h1>
 <br>
@@ -43,7 +42,7 @@
 	</table>
 	<br>
 	<!-- Donc créer un input cacher qui renvoie la valeur de l'ouput lors de la validation  -->
-    <input type="button" name="submitCitoyen" onclick="onSubmit()" value="Envoyer"> <!-- onsubmit don't work  -->
+    <input type="button" name="submitCitoyen" onclick="onSubmit()" value="Envoyer" style="display: auto;"> <!-- onsubmit don't work  -->
 
 </form>
 

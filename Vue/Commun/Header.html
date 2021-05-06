@@ -1,12 +1,16 @@
 <div id="conteneur">
-	<img src="epic.jpg" />
+	<img src="ok.jpg" />
 </div>
 <!-- MENU -->
 <ul id="menu">
 	<li><a href="index.php?Accueil">Jouer</a></li>
 	<li><a href="index.php?#">Meilleur score</a></li>
 	<li><a href="index.php?#">Mon score</a></li>
-	<li><a href="index.php?connexion">Se connecter</a></li>	
+	<li><a href="index.php?connexion">Se connecter</a></li>
+	<?php 
+	echo isset($_SESSION["Name"]) ? "<li><a href='index.php?deco'>Se déconnecter</a></li>" : ""; 
+	?>
 </ul>
 <!-- MENU -->
+<h1 id="titreImage">WARC</h1>
 

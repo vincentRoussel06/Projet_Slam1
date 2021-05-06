@@ -3,13 +3,12 @@
     <tr><td>
     <h1>Connetez-vous pour jouer </h1>
     <form method="POST"    action="index.php?validerConnexion">
-        <input type="text" name="identifiant" placeholder="identifiant" id="identidiant">
+        <input type="text" name="identifiant" placeholder="identifiant" id="identidiant" required>
         <br><br>
-        <input type="password" name="passwd" placeholder="Mot de passe">
+        <input type="password" name="passwd" placeholder="Mot de passe" required>
         <br><br>
         <input type="submit" name="validerConnexion" value="Jouer">
         <br><br>
-        <input type="reset" name="effacerConnexion" value="Effacer"><br><br>
     </form>
     <a href="index.php?inscription">Vous n'êtes pas inscrit?</a>
     </td></tr></table>
