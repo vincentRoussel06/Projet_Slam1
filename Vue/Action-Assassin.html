@@ -1,15 +1,10 @@
-<!-- MENU -->
-<ul id="menu">
-	<li><a href="index.php?Accueil" class="active">Jouer</a></li>
-	<li><a href="index.php?#">Meilleur score</a></li>
-	<li><a href="index.php?#">Mon score</a></li>	
-</ul>
-<!-- MENU -->
+<?php
+if($_SESSION[$_SESSION["joueur"]]["Assassin"]!=0){
 
-
+?>
 <h1 id="titreImage">WARC</h1>
-<h1 id="titrePage">Action assassin</h1>
-<h1 id="titrePage">Vous avez : <?= $_SESSION["Assassin"];?> assassin</h1>
+<h1 id="titrePage">Joueur <?= $_SESSION["joueur"];?></h1>
+<h1 id="titrePage">Vous avez : <?= $_SESSION[$_SESSION["joueur"]]["Assassin"];?> guerriers</h1>
 <br>
 <div id="Main">
 
@@ -17,7 +12,7 @@
 	<tr>
 		<td><button><a href="index.php?Resume=citoyen">Tuer un citoyen</a></button></td>
 	</tr>
-	<tr><td>Tuer 1 citoyen enemie par assassin</td></tr>
+	<tr><td>Tuer 1 citoyen enemie par guerriers</td></tr>
 </table>
 <table class="Text" style="float: right;">
 	<tr>
@@ -28,3 +23,9 @@
 <br>
 </div>
 
+<?php
+
+} // fin du if
+else {
+	header("Location: index.php?Resume=citoyen");
+}

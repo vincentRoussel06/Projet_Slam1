@@ -1,11 +1,7 @@
-<!-- MENU -->
-<ul id="menu">
-	<li><a href="index.php?Accueil" class="active">Jouer</a></li>
-	<li><a href="index.php?#">Meilleur score</a></li>
-	<li><a href="index.php?#">Mon score</a></li>	
-</ul>
-<!-- MENU -->
-
+<?php
+	$Joueur 	= $_SESSION['joueur']=='a' ? 'a' : 'b';
+	$Enemi	 	= $_SESSION['joueur']=='a' ? 'b' : 'a';
+?>
 
 <h1 id="titreImage">WARC</h1>
 <h1 id="titrePage">Etat des villages</h1>
@@ -16,22 +12,22 @@
 		<td style="text-align: center;" colspan=4>Votre ville</td>
 	</tr>
 	<tr>
-		<td>Chasseur :</td>
-		<td> <?= $_SESSION["Chasseur"]; ?> </td>
+		<td>Fermiers :</td>
+		<td> <?= $_SESSION[$Joueur]["Chasseur"]; ?> </td>
 		<td>Nourriture :</td>
-		<td><?= $_SESSION["Nourriture"]; ?></td>
+		<td><?= $_SESSION[$Joueur]["Nourriture"]; ?></td>
 	</tr>
 	<tr>
 		<td>Constructeur :</td>
-		<td> <?= $_SESSION["Constructeur"]; ?> </td>
+		<td> <?= $_SESSION[$Joueur]["Constructeur"]; ?> </td>
 		<td>Maison :</td>
-		<td><?= $_SESSION["Maison"]; ?></td>
+		<td><?= $_SESSION[$Joueur]["Maison"]; ?></td>
 	</tr>
 	<tr>
-		<td>Assassin :</td>
-		<td> <?= $_SESSION["Assassin"]; ?> </td>
+		<td>Guerriers :</td>
+		<td> <?= $_SESSION[$Joueur]["Assassin"]; ?> </td>
 		<td>Piège :</td>
-		<td><?= $_SESSION["Piege"]; ?></td>
+		<td><?= $_SESSION[$Joueur]["Piege"]; ?></td>
 	</tr>
 </table>
 
@@ -40,22 +36,22 @@
 		<td style="text-align: center;" colspan=4>Ville adversse</td>
 	</tr>
 	<tr>
-		<td>Chasseur :</td>
-		<td> <?= $_SESSION["Ordi_Chasseur"]; ?> </td>
+		<td>Fermiers :</td>
+		<td> <?= $_SESSION[$Enemi]["Chasseur"]; ?> </td>
 		<td>Nourriture :</td>
-		<td><?= $_SESSION["Ordi_Nourriture"]; ?></td>
+		<td><?= $_SESSION[$Enemi]["Nourriture"]; ?></td>
 	</tr>
 	<tr>
 		<td>Constructeur :</td>
-		<td> <?= $_SESSION["Ordi_Constructeur"]; ?> </td>
+		<td> <?= $_SESSION[$Enemi]["Constructeur"]; ?> </td>
 		<td>Maison :</td>
-		<td><?= $_SESSION["Ordi_Maison"]; ?></td>
+		<td><?= $_SESSION[$Enemi]["Maison"]; ?></td>
 	</tr>
 	<tr>
-		<td>Assassin :</td>
-		<td> <?= $_SESSION["Ordi_Assassin"]; ?> </td>
+		<td>Guerriers :</td>
+		<td> <?= $_SESSION[$Enemi]["Assassin"]; ?> </td>
 		<td>Piège :</td>
-		<td><?= $_SESSION["Ordi_Piege"]; ?></td>
+		<td><?= $_SESSION[$Enemi]["Piege"]; ?></td>
 	</tr>
 </table>
 </div>
@@ -63,6 +59,6 @@
 <br><br>
 <button style="display: block; margin: auto; padding: 1%;"><a href="index.php?Citoyen"> Suivant</a></button>
 <br><br><br><br><br><br>
-<button style="display: block; margin: auto; padding: 1%;"><a href="../Projet_Slam1/Vue/test.php">test</a></button>
+<!-- <button style="display: block; margin: auto; padding: 1%;"><a href="../Projet_Slam1/Vue/test.php">test</a></button> -->
 <br><br>
 

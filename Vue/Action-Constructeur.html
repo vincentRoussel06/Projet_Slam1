@@ -1,15 +1,6 @@
-<!-- MENU -->
-<ul id="menu">
-	<li><a href="index.php?Accueil" class="active">Jouer</a></li>
-	<li><a href="index.php?#">Meilleur score</a></li>
-	<li><a href="index.php?#">Mon score</a></li>	
-</ul>
-<!-- MENU -->
-
-
 <h1 id="titreImage">WARC</h1>
-<h1 id="titrePage">Action constructeur</h1>
-<h1 id="titrePage">Vous avez : <?= $_SESSION["Constructeur"];?> constructeur</h1>
+<h1 id="titrePage">Joueur <?= $_SESSION["joueur"];?></h1>
+<h1 id="titrePage">Vous avez : <?= $_SESSION[$_SESSION["joueur"]]["Constructeur"];?> constructeur</h1>
 <br>
 <div id="Main">
 

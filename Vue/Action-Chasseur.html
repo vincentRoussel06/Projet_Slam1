@@ -1,15 +1,6 @@
-<!-- MENU -->
-<ul id="menu">
-	<li><a href="index.php?Accueil" class="active">Jouer</a></li>
-	<li><a href="index.php?#">Meilleur score</a></li>
-	<li><a href="index.php?#">Mon score</a></li>	
-</ul>
-<!-- MENU -->
-
-
 <h1 id="titreImage">WARC</h1>
-<h1 id="titrePage">Action chasseur</h1>
-<h1 id="titrePage">Vous avez : <?= $_SESSION["Chasseur"];?> chasseurs</h1>
+<h1 id="titrePage">Joueur <?= $_SESSION["joueur"];?></h1>
+<h1 id="titrePage">Vous avez : <?= $_SESSION[$_SESSION["joueur"]]["Chasseur"];?> fermiers</h1>
 <br>
 <div id="Main">
 
@@ -18,7 +9,7 @@
 		<td><button><a href="index.php?Constructeur=chasser">Partir chasser</a></button></td>
 	</tr>
 	<tr><td>Sors de la ville </td></tr>
-	<tr><td>Rapporte +10 de nourriture par citoyen</td></tr>
+	<tr><td>Rapporte +10 de nourriture par Fermiers</td></tr>
 </table>
 
 <table class="Text" style="float: right;">
@@ -26,8 +17,8 @@
 		<td><button><a href="index.php?Constructeur=vol">Voler de la nourriture</a></button></td>
 	</tr>
 	<tr><td>Va dans la ville Enemie</td></tr>
-	<tr><td>Rapporte +10 de nourritures par citoyen</td></tr>
-	<tr><td>Enlève -10 de nourritures par citoyen à l'enemie</td></tr>
+	<tr><td>Rapporte +10 de nourritures par Fermiers</td></tr>
+	<tr><td>Enlève -10 de nourritures par Fermiers à l'enemie</td></tr>
 	<tr><td>1/2 chance de mourir</td></tr>
 </table>
 <br>
