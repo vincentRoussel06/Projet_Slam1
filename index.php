@@ -2,6 +2,54 @@
 	session_start();
 	require_once('bdd.php');
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// TODO :
+	// afficher score et meilleurs score
+	// faire action nourriture
+	// enregistrer les tourszs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	#connexion a BDD 
 	$bdd = new BDD();
 
@@ -29,10 +77,18 @@
 		$AFFICHAGE = actionConstructeur($_SESSION["joueur"]);
 	}
 	else if(isset($_GET['Resume'])){
-		$AFFICHAGE = actionAssassin($_SESSION["joueur"]);
+		$AFFICHAGE = actionAssassin($_SESSION["joueur"]); // verif fin de partie ici
 		// Change de joueur à la fin de chaque tour
 		$_SESSION['joueur'] = $_SESSION['joueur']=='a' ? 'b' : 'a'; 
 	}
+	/********************************** SCORE / BESTSCORE **********************************/
+	else if(isset($_GET['score'])){
+		$AFFICHAGE = "\Score.html";
+	}
+	else if(isset($_GET['bestScore'])){
+		$AFFICHAGE = "\BestScore.html";
+	}
+	/********************************** CONNEXION / INSCRIPTION **********************************/
 	else if (isset($_GET['deco'])) {
         session_destroy();
         header("Location: index.php");   
