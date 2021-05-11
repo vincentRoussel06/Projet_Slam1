@@ -1,12 +1,11 @@
 <?php 
 session_start();
+require_once('../bdd.php');
+#connexion a BDD 
+$bdd = new BDD();
 $_SESSION["Chasseur"]=0;
-if(isset($_POST["resChasseur"])){
-  echo "ok : ".$_POST["resChasseur"].";";
-  $_SESSION["Chasseur"] = $_POST["resChasseur"];
-}else{
-  echo "Nonok";
-  $_SESSION["Chasseur"]=10; 
+if(isset($_POST["submit"])){
+  $bdd->AddGame($_POST["Joueur"],NULL, $_POST["nbTour"], date("m.d.y"), true);
 }
 ?>
 
@@ -17,15 +16,14 @@ if(isset($_POST["resChasseur"])){
   </head>
   <body >
     <form action="test.php" method="POST">
-      <p>Nombre de Chasseur : </p>
-      <!-- Le output n'est pas envoyer -->
-      <output id="NewChasseur"><?= $_SESSION["Chasseur"];?></output><br> 
-      <input type="button" value="+" onclick="NewChasseur.value = parseInt(NewChasseur.value)+1;">
-      <input type="button" value="-" onclick="NewChasseur.value = parseInt(NewChasseur.value)-1;">
-
       <!-- Donc créer un input cacher qui renvoie la valeur de l'ouput lors de la validation  -->
       <input type="hidden" id="resChasseurId" name="resChasseur">
-      <input type="submit" name="submit" onclick="resChasseurId.value = NewChasseur.value"> <!-- onsubmit don't work  -->
+      <label for="tour">Nbtour :</label>
+      <input type="number" name="nbTour" id="tour" value="20">
+      <label for="Joueur">Joueur :</label>
+      <input type="text" name="Joueur" id="Joueur">
+
+      <input type="submit" name="submit" onclick="resChasseurId.value = NewChasseur.value" value="TestInsert"> <!-- onsubmit don't work  -->
     </form> 
 
     <br><br>

@@ -1,9 +1,22 @@
 <h1 id="titrePage">Le top 3 des meilleurs scores</h1>
-<table style="margin:auto;">
+<table style="margin:auto;" class="Score">
 	<tr>
 		<td>Nom du joueur</td>
-		<td>Résultat</td>
 		<td>Nombre de tour</td>
 		<td>Date</td>
 	</tr>
+	<?php
+	$cpt = 0;
+	foreach ($_SESSION["bestScore"] as $tab) {
+		echo "<tr>";
+		echo "<td>".$tab['idJoueur']."</td>";
+		echo "<td>".$tab['nbTour']."</td>";
+		echo "<td>".$tab['datePartie']."</td>";
+		echo "</tr>";
+		$cpt++;
+		if($cpt>=3){break;}
+	}
+?>
 </table>
+
+<p><br><br></p>

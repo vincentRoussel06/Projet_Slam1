@@ -83,9 +83,11 @@
 	}
 	/********************************** SCORE / BESTSCORE **********************************/
 	else if(isset($_GET['score'])){
+		$_SESSION["Score"] = $bdd->printGameByUser($_SESSION["Name"]);
 		$AFFICHAGE = "\Score.html";
 	}
 	else if(isset($_GET['bestScore'])){
+		$_SESSION["bestScore"] = $bdd->printBestGame();
 		$AFFICHAGE = "\BestScore.html";
 	}
 	/********************************** CONNEXION / INSCRIPTION **********************************/
@@ -263,10 +265,11 @@
             #Si l'utilisateur à bien saisi son mot de passe
                 if($bdd->logIn($_POST['identifiant'], $_POST['passwd'])){
                 	$return = "\Accueil.html";
+                }else{
+                	echo '<script type="text/javascript"> alert("Mauvais identifiant ou mdp");</script>';
                 }
-                
-            }else  $message="ErreurMDP";
-        }else  $message="ErreurId";
+            }
+        }
 
         return $return;
 	}

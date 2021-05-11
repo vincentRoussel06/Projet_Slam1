@@ -16,24 +16,26 @@ class BDD{
 
 	#Methodes
 	function logIn($nomJoueur, $motDePasse){
-		#requete qui récup les données du joueur dans la table 'joueur' dans roulette
+		#requete qui récup les données du joueur dans la table 'user'
 		$req='SELECT *
 			  FROM user
 			  WHERE Nom=?';
 		$reponse = $this->bdd->prepare($req);
 		$reponse->execute(array($nomJoueur));
-
-		if($reponse->rowcount()==0){
-			echo '<script type="text/javascript"> alert("Verifier vos identifiants et votre mot de passe");</script>';
-			return false;
-		}
+		$areturn=false;
 
 		while ($donnees = $reponse->fetch()) {
-			if (password_verify($motDePasse, $donnees['Mdp'])) {
+			/*if (password_verify($motDePasse, $donnees['Mdp'])) {
 				$_SESSION["Name"]=$donnees["Nom"];
-				return true;
+				$areturn = true;
+			}*/
+
+			if ($donnees['Mdp']==$motDePasse) {
+				$_SESSION["Name"]=$donnees["Nom"];
+				$areturn = true;
 			}
 		}
+		return $areturn;
 	}
 
 
@@ -42,22 +44,23 @@ class BDD{
 		$req="INSERT INTO user (Nom, Mdp, Partie, NbTour) 
 			  VALUES (?, ?, ?, ?)";
 		$reponse= $this->bdd->prepare($req);
-		$mdp = password_hash($passwd, PASSWORD_DEFAULT);
+		// $mdp = password_hash($passwd, PASSWORD_DEFAULT);
+		$mdp = $passwd;
 		$reponse->execute(array($identifiant,$mdp,0,0));
-		echo '<script type="text/javascript"> alert("Insertion validée");</script>';
+		echo '<script type="text/javascript"> alert("Inscription validée");</script>';
 
 	}
 
-	function AddGame($IDJoueur,$DatePartie, $MiseJoueur, $GainJoueur){
-		$req="INSERT INTO parties (IDJoueur,DatePartie, MiseJoueur, GainJoueur)
-			  VALUES (?, ? ,? ,?)";
+	function AddGame($idJoueur,$idPartie, $nbTour, $datePartie,$resultat){
+		$req="INSERT INTO score (idJoueur,idPartie, nbTour, datePartie, resultat)
+			  VALUES (?, ? ,? ,?, ?)";
 		$reponse= $this->bdd->prepare($req);
-		$reponse->execute(array($IDJoueur, $DatePartie, $MiseJoueur, $GainJoueur));
+		$reponse->execute(array($idJoueur,$idPartie, $nbTour, $datePartie, $resultat));
 	}
 
 	function printAllUser(){
 		$requete = 'SELECT * FROM user';
-		$req = $bdd->prepare($requete);
+		$req = $this->bdd->prepare($requete);
 		$req->execute();
 		$donnee = array(); // tab pour les donnee
 		$cpt=0;
@@ -77,6 +80,44 @@ class BDD{
 			}
 			echo "<br>";
 		}
+	}
+
+	function printGameByUser($user){
+		$requete = 'SELECT * FROM score WHERE idJoueur=?';
+		$req = $this->bdd->prepare($requete);
+		$req->execute(array($user));
+		$donnee = array(); // tab pour les donnee
+		$cpt=0;
+
+		while($data = $req->fetch()){	// init le TAB avec la bdd
+			$donnee[$cpt]['idJoueur'] = $data['idJoueur'];
+			$donnee[$cpt]['idPartie'] = $data['idPartie'];
+			$donnee[$cpt]['nbTour'] = $data['nbTour'];
+			$donnee[$cpt]['datePartie'] = $data['datePartie'];
+			$donnee[$cpt]['resultat'] = $data['resultat'];
+			$cpt++;
+		}
+		
+		return $donnee;
+	}
+
+	function printBestGame(){
+		$requete = 'SELECT * FROM score ORDER BY nbTour ASC';
+		$req = $this->bdd->prepare($requete);
+		$req->execute();
+		$donnee = array(); // tab pour les donnee
+		$cpt=0;
+
+		while($data = $req->fetch()){	// init le TAB avec la bdd
+			$donnee[$cpt]['idJoueur'] = $data['idJoueur'];
+			$donnee[$cpt]['idPartie'] = $data['idPartie'];
+			$donnee[$cpt]['nbTour'] = $data['nbTour'];
+			$donnee[$cpt]['datePartie'] = $data['datePartie'];
+			$donnee[$cpt]['resultat'] = $data['resultat'];
+			$cpt++;
+		}
+		
+		return $donnee;
 	}
 
 	#ToString

@@ -1,9 +1,21 @@
 <h1 id="titrePage"><?= $_SESSION["Name"];?></h1>
-<table style="margin:auto;">
+<table style="margin:auto;" class="Score">
 	<tr>
-		<td>Partie</td>
 		<td>Résultat</td>
 		<td>Nombre de tour</td>
 		<td>Date</td>
 	</tr>
+	<?php
+	foreach ($_SESSION["Score"] as $tab) {
+		echo "<tr>";
+		echo "<td>";
+		echo $tab['resultat']==1?'Gagner':'Perdu';
+		echo "</td>";
+		echo "<td>".$tab['nbTour']."</td>";
+		echo "<td>".$tab['datePartie']."</td>";
+		echo "</tr>";
+	}
+?>
 </table>
+
+<p><br><br></p>

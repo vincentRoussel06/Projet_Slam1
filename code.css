@@ -140,3 +140,21 @@ td,tr {
 input[type=button]{
  	display: block; margin: auto; padding: 1%;
  }
+ /*********************************************************  SCORE  ****************************************************************/
+.Score tr:nth-child(odd){
+  background-color:white;
+}
+.Score tr:nth-child(1){
+  background-color:black;
+  color: white;
+}
+.Score tr:nth-child(even){
+  background-color:#CCC;
+}
+.Score tr, .Score{
+	border-collapse: collapse;
+	border: solid 1px black;
+	margin : 20%;
+}
+ /********************************************************* FIN SCORE  ****************************************************************/}
+
