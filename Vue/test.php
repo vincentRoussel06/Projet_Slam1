@@ -5,7 +5,7 @@ require_once('../bdd.php');
 $bdd = new BDD();
 $_SESSION["Chasseur"]=0;
 if(isset($_POST["submit"])){
-  $bdd->AddGame($_POST["Joueur"],NULL, $_POST["nbTour"], date("m.d.y"), true);
+  $bdd->AddGame($_POST["Joueur"], NULL, $_POST["nbTour"], date("Y-m-d"), true);
 }
 ?>
 
@@ -19,9 +19,9 @@ if(isset($_POST["submit"])){
       <!-- Donc créer un input cacher qui renvoie la valeur de l'ouput lors de la validation  -->
       <input type="hidden" id="resChasseurId" name="resChasseur">
       <label for="tour">Nbtour :</label>
-      <input type="number" name="nbTour" id="tour" value="20">
+      <input type="number" name="nbTour" id="tour" value="20" required>
       <label for="Joueur">Joueur :</label>
-      <input type="text" name="Joueur" id="Joueur">
+      <input type="text" name="Joueur" id="Joueur" required>
 
       <input type="submit" name="submit" onclick="resChasseurId.value = NewChasseur.value" value="TestInsert"> <!-- onsubmit don't work  -->
     </form> 

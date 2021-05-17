@@ -4,17 +4,18 @@
 #On créer la class BDD
 class BDD{
 	private $bdd;
-	#Constructeur
+	
+	/****************************************** Constructeur **********************************************/
 	public function __construct(){
 		#Connexion a la BDD
 		try {
-		    $this->bdd =  new PDO('mysql:host=localhost;dbname=Projet_Slam1;charset=utf8','root','');
+		    $this->bdd =  new PDO('mysql:host=localhost;dbname=projet_Slam1;charset=utf8','root','');
 		} catch (Exception $e) {
 		    die('Erreur : '.$e->getMessage());
 		}
 	}
 
-	#Methodes
+	/********************************************* FONCTION **************************************************/
 	function logIn($nomJoueur, $motDePasse){
 		#requete qui récup les données du joueur dans la table 'user'
 		$req='SELECT *
@@ -47,39 +48,12 @@ class BDD{
 		// $mdp = password_hash($passwd, PASSWORD_DEFAULT);
 		$mdp = $passwd;
 		$reponse->execute(array($identifiant,$mdp,0,0));
-		echo '<script type="text/javascript"> alert("Inscription validée");</script>';
-
 	}
 
-	function AddGame($idJoueur,$idPartie, $nbTour, $datePartie,$resultat){
-		$req="INSERT INTO score (idJoueur,idPartie, nbTour, datePartie, resultat)
-			  VALUES (?, ? ,? ,?, ?)";
+	function AddGame($idJoueur, $idPartie, $nbTour, $datePartie, $resultat){
+		$req = "INSERT INTO score (idJoueur, idPartie, nbTour, datePartie, resultat) VALUES (?, ? ,? ,?, ?)";
 		$reponse= $this->bdd->prepare($req);
-		$reponse->execute(array($idJoueur,$idPartie, $nbTour, $datePartie, $resultat));
-	}
-
-	function printAllUser(){
-		$requete = 'SELECT * FROM user';
-		$req = $this->bdd->prepare($requete);
-		$req->execute();
-		$donnee = array(); // tab pour les donnee
-		$cpt=0;
-
-		while($data = $req->fetch()){	// init le TAB avec la bdd
-			$donnee[$cpt]['id'] = $data['id'];
-			$donnee[$cpt]['Mail'] = $data['Mail'];
-			$donnee[$cpt]['Mdp'] = $data['Mdp'];
-			$donnee[$cpt]['Partie'] = $data['Partie'];
-			$donnee[$cpt]['NbTour'] = $data['NbTour'];
-			$cpt++;
-		}
-		
-		foreach ($donnee as $tab) {
-			foreach ($tab as $key => $value) {
-				echo $key." : ".$value." | ";
-			}
-			echo "<br>";
-		}
+		$reponse->execute(array($idJoueur, $idPartie, $nbTour, $datePartie, $resultat));
 	}
 
 	function printGameByUser($user){
